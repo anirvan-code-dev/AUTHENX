@@ -1,0 +1,86 @@
+{
+  "name": "Screening",
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "description": "Type of the mock document screened"
+    },
+    "risk_score": {
+      "type": "number",
+      "description": "Overall AI-assisted risk score 0-100"
+    },
+    "overall_status": {
+      "type": "string",
+      "description": "Low Concern | Requires Review | Potential Inconsistency | Suspicious"
+    },
+    "document_url": {
+      "type": "string",
+      "description": "Public URL of the uploaded mock document"
+    },
+    "reference_photo_url": {
+      "type": "string",
+      "description": "Public URL of the uploaded reference photo"
+    },
+    "analysis_result": {
+      "type": "object",
+      "description": "Full structured analysis JSON returned by the screening service"
+    },
+    "demo_mode": {
+      "type": "boolean",
+      "default": true,
+      "description": "True when results are simulated demo data"
+    }
+  },
+  "required": [],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
